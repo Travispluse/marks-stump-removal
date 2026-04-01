@@ -6,7 +6,7 @@ import { business, services, testimonials, faqs, cities } from '../data/business
 ---
 <Layout 
   title="Mark's Stump Removal | Professional Stump Grinding in Greenville, SC"
-  description="5-star rated stump grinding in Greenville, SC. Free estimates — text us a photo! Locally owned, fully insured. Call (864) 214-5623."
+  description="5-star rated stump grinding in Greenville, SC. Free estimates — text us a photo. Locally owned, fully insured. Serving a 70-mile radius. Call (864) 214-5623."
 >
   <!-- Hero -->
   <section class="bg-forest text-white py-20 md:py-28">
@@ -20,10 +20,10 @@ import { business, services, testimonials, faqs, cities } from '../data/business
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href={business.phoneTel} class="bg-earth text-forest px-8 py-4 rounded-xl text-lg font-bold hover:bg-amber-300 transition-colors shadow-xl">
-          📞 Call {business.phone}
+          Call {business.phone}
         </a>
         <a href={business.smsLink} class="bg-white/10 backdrop-blur text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-white/20 transition-colors border border-white/30">
-          📱 Text Us a Photo for Free Quote
+          Text Us a Photo for Free Quote
         </a>
       </div>
     </div>
@@ -35,15 +35,12 @@ import { business, services, testimonials, faqs, cities } from '../data/business
       <h2 class="text-3xl font-bold text-center text-forest mb-10">Our Services</h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {services.map(service => (
-          <div class="bg-cream rounded-2xl p-6 text-center hover:shadow-lg transition-shadow">
-            <div class="text-4xl mb-3">{service.icon}</div>
+          <a href={`/services/${service.slug}/`} class="bg-cream rounded-2xl p-6 text-center hover:shadow-lg transition-shadow block">
             <h3 class="text-xl font-bold text-forest mb-2">{service.title}</h3>
             <p class="text-gray-600 text-sm">{service.short}</p>
-          </div>
+            <span class="text-green text-sm font-medium mt-3 inline-block">Learn more</span>
+          </a>
         ))}
-      </div>
-      <div class="text-center mt-8">
-        <a href="/services/" class="text-green font-bold hover:text-forest transition-colors">View all services →</a>
       </div>
     </div>
   </section>
@@ -51,50 +48,21 @@ import { business, services, testimonials, faqs, cities } from '../data/business
   <!-- Why Choose Us -->
   <section class="py-16 bg-cream">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center text-forest mb-10">Why Choose Mark's?</h2>
+      <h2 class="text-3xl font-bold text-center text-forest mb-10">Why Choose Mark's Stump Removal</h2>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">⭐</span>
+        {[
+          { title: "5-Star Rated", desc: `Perfect 5.0 rating across ${business.reviewCount} Google reviews. Our customers speak for themselves.` },
+          { title: "Locally Owned", desc: "Based right here in Wade Hampton, Greenville. We know the area, the soil, and the trees." },
+          { title: "Free Estimates", desc: "Text us a photo for a fast quote. No obligation, no pressure, no hidden fees." },
+          { title: "Fully Insured", desc: "Licensed and insured for your peace of mind. We protect your property like it is our own." },
+          { title: "Clean Results", desc: "We leave your yard better than we found it. Level ground, no mess, ready for landscaping." },
+          { title: "Same-Week Scheduling", desc: "No waiting weeks. We offer fast turnaround so you can get your yard back on track." },
+        ].map(item => (
+          <div class="text-center">
+            <h3 class="text-lg font-bold text-forest mb-2">{item.title}</h3>
+            <p class="text-gray-600">{item.desc}</p>
           </div>
-          <h3 class="text-lg font-bold text-forest mb-2">5-Star Rated</h3>
-          <p class="text-gray-600">Perfect 5.0 rating across {business.reviewCount} Google reviews. Our customers speak for themselves.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">📍</span>
-          </div>
-          <h3 class="text-lg font-bold text-forest mb-2">Locally Owned</h3>
-          <p class="text-gray-600">Based right here in Wade Hampton, Greenville. We know the area, the soil, and the trees.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">💰</span>
-          </div>
-          <h3 class="text-lg font-bold text-forest mb-2">Free Estimates</h3>
-          <p class="text-gray-600">Text us a photo for a fast quote. No obligation, no pressure, no hidden fees.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">🛡️</span>
-          </div>
-          <h3 class="text-lg font-bold text-forest mb-2">Fully Insured</h3>
-          <p class="text-gray-600">Licensed and insured for your peace of mind. We protect your property like it's our own.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">🧹</span>
-          </div>
-          <h3 class="text-lg font-bold text-forest mb-2">Clean Results</h3>
-          <p class="text-gray-600">We leave your yard better than we found it. Level ground, no mess, ready for landscaping.</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">📅</span>
-          </div>
-          <h3 class="text-lg font-bold text-forest mb-2">Same-Week Scheduling</h3>
-          <p class="text-gray-600">No waiting weeks. We offer fast turnaround so you can get your yard back on track.</p>
-        </div>
+        ))}
       </div>
     </div>
   </section>
@@ -106,27 +74,30 @@ import { business, services, testimonials, faqs, cities } from '../data/business
       <div class="grid md:grid-cols-2 gap-8">
         {testimonials.map(t => (
           <div class="bg-white/10 backdrop-blur rounded-2xl p-8">
-            <div class="text-yellow-400 text-xl mb-3">★★★★★</div>
+            <div class="text-yellow-400 text-xl mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
             <p class="text-lg italic mb-4">"{t.text}"</p>
             <p class="font-bold text-earth">— {t.name}</p>
           </div>
         ))}
       </div>
-      <a href="https://www.google.com/search?q=Mark's+Stump+Removal+Greenville+SC+reviews" target="_blank" rel="noopener" class="inline-block mt-8 text-earth hover:underline font-medium">Read all {business.reviewCount} reviews on Google →</a>
+      <a href="https://www.google.com/search?q=Mark's+Stump+Removal+Greenville+SC+reviews" target="_blank" rel="noopener" class="inline-block mt-8 text-earth hover:underline font-medium">Read all {business.reviewCount} reviews on Google</a>
     </div>
   </section>
 
   <!-- Service Areas -->
   <section class="py-16 bg-white">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center text-forest mb-4">Service Areas</h2>
-      <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">We serve Greenville and communities throughout Upstate South Carolina. If you're within an hour of Wade Hampton, we can help.</p>
+      <h2 class="text-3xl font-bold text-center text-forest mb-4">Serving {cities.length}+ Communities Across Upstate SC</h2>
+      <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">We serve Greenville and communities throughout a 70-mile radius of Upstate South Carolina. If you are within an hour of our home base, we can help.</p>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-        {cities.map(city => (
-          <a href={`/${city.slug}-sc-stump-grinding/`} class="bg-cream hover:bg-earth/20 rounded-xl p-4 text-center font-medium text-forest transition-colors">
+        {cities.slice(0, 20).map(city => (
+          <a href={`/stump-grinding-${city.slug}-sc/`} class="bg-cream hover:bg-earth/20 rounded-xl p-4 text-center font-medium text-forest transition-colors text-sm">
             {city.name}, SC
           </a>
         ))}
+      </div>
+      <div class="text-center mt-6">
+        <a href="/service-areas/" class="text-green font-bold hover:text-forest transition-colors">View all {cities.length} service areas</a>
       </div>
     </div>
   </section>

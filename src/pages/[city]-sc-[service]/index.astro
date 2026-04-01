@@ -1,0 +1,166 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import Stars from '../../components/Stars.astro';
+import { cities, services, business } from '../../data/business';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  const paths: any[] = [];
+  for (const city of cities) {
+    for (const service of services) {
+      paths.push({
+        params: { city: city.slug, service: service.slug },
+        props: { city, service },
+      });
+    }
+  }
+  return paths;
+};
+
+const { city, service } = Astro.props;
+const otherServicesInCity = services.filter(s => s.slug !== service.slug);
+const nearbyCities = cities.filter(c => c.slug !== city.slug && c.county === city.county).slice(0, 4);
+const otherCities = cities.filter(c => c.slug !== city.slug && c.county !== city.county).slice(0, 4);
+const relatedCities = [...nearbyCities, ...otherCities].slice(0, 6);
+---
+<Layout
+  title={`${service.title} in ${city.name}, SC | Mark's Stump Removal`}
+  description={`Professional ${service.title.toLowerCase()} in ${city.name}, South Carolina. 5-star rated, free estimates. Serving ${city.county}. Call or text Mark's Stump Removal at (864) 214-5623.`}
+>
+  <section class="bg-forest text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <Stars />
+      <h1 class="text-4xl md:text-5xl font-bold mt-6 mb-4">{service.title} in {city.name}, SC</h1>
+      <p class="text-xl text-gray-200 max-w-2xl mx-auto">Professional {service.title.toLowerCase()} for {city.name} homeowners, contractors, and property managers. Free estimates available.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <!-- City-specific intro -->
+      <p class="text-gray-600 text-lg mb-6">
+        {city.description}
+      </p>
+      <p class="text-gray-600 text-lg mb-8">
+        Mark's Stump Removal provides professional {service.title.toLowerCase()} throughout {city.name} and {city.county}. Whether your property is near {city.landmarks[0]} or in the {city.neighborhoods[0]}, we deliver the same 5-star service that has earned us {business.reviewCount} perfect Google reviews.
+      </p>
+
+      <!-- Service details -->
+      <h2 class="text-2xl font-bold text-forest mb-4">About Our {service.title} Service</h2>
+      <p class="text-gray-600 mb-6">{service.long}</p>
+      <ul class="space-y-2 text-gray-600 mb-8">
+        {service.benefits.map(b => (
+          <li class="flex items-start gap-2">
+            <span class="text-green font-bold mt-0.5">&#10003;</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Hyper-local landmarks and areas -->
+      <h2 class="text-2xl font-bold text-forest mb-4">{service.title} Near Popular {city.name} Locations</h2>
+      <p class="text-gray-600 mb-4">
+        We provide {service.title.toLowerCase()} to residential and commercial properties throughout {city.name}, including areas near:
+      </p>
+      <ul class="grid md:grid-cols-2 gap-2 mb-8">
+        {city.landmarks.map(l => (
+          <li class="text-gray-600 flex items-start gap-2">
+            <span class="text-green font-bold mt-0.5">&#10003;</span>
+            <span>{l}</span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Neighborhoods -->
+      {city.neighborhoods.length > 0 && (
+        <div class="mb-8">
+          <h3 class="text-xl font-bold text-forest mb-3">{city.name} Neighborhoods We Serve</h3>
+          <p class="text-gray-600 mb-3">
+            Our {service.title.toLowerCase()} service is available throughout all {city.name} neighborhoods, including:
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {city.neighborhoods.map(n => (
+              <span class="bg-cream px-3 py-1.5 rounded-lg text-sm text-forest">{n}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Why choose us for this city -->
+      <div class="bg-cream rounded-2xl p-8 mb-12">
+        <h2 class="text-2xl font-bold text-forest mb-4">Why {city.name} Residents Choose Mark's for {service.title}</h2>
+        <ul class="space-y-3 text-gray-600">
+          <li class="flex items-start gap-3">
+            <span class="text-green font-bold">&#10003;</span>
+            <span><strong>5.0 Google rating</strong> — {business.reviewCount} verified reviews from Upstate SC customers</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green font-bold">&#10003;</span>
+            <span><strong>{city.distance} from our base</strong> — serving {city.name} and {city.county} with fast response times</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green font-bold">&#10003;</span>
+            <span><strong>Text a photo for a free quote</strong> — no obligation, no pressure</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green font-bold">&#10003;</span>
+            <span><strong>Same-week scheduling</strong> — get your {city.name} property taken care of fast</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green font-bold">&#10003;</span>
+            <span><strong>Fully insured</strong> — your property is protected</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Get a quote -->
+      <div class="bg-forest text-white rounded-2xl p-8 mb-12">
+        <h2 class="text-2xl font-bold mb-3">Get a Free {service.title} Quote in {city.name}</h2>
+        <p class="text-gray-200 mb-6">Text a photo of your stump or problem area to {business.phone}. Stand 10-15 feet back so we can see the full scope. We will reply with a fair, no-obligation estimate, usually within hours.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href={business.phoneTel} class="bg-earth text-forest px-6 py-3 rounded-xl font-bold text-center hover:bg-amber-300 transition-colors">
+            Call {business.phone}
+          </a>
+          <a href={business.smsLink} class="bg-white/10 backdrop-blur text-white px-6 py-3 rounded-xl font-bold text-center hover:bg-white/20 transition-colors border border-white/30">
+            Text Us a Photo
+          </a>
+        </div>
+      </div>
+
+      <!-- Other services in this city -->
+      <h2 class="text-2xl font-bold text-forest mb-4">Other Services in {city.name}</h2>
+      <div class="grid md:grid-cols-3 gap-4 mb-12">
+        {otherServicesInCity.map(s => (
+          <a href={`/${city.slug}-sc-${s.slug}/`} class="bg-cream rounded-xl p-4 hover:shadow-md transition-shadow block">
+            <h3 class="font-bold text-forest text-sm">{s.title} in {city.name}</h3>
+            <span class="text-green text-xs font-medium mt-1 inline-block">Learn more</span>
+          </a>
+        ))}
+        <a href={`/stump-grinding-${city.slug}-sc/`} class="bg-cream rounded-xl p-4 hover:shadow-md transition-shadow block">
+          <h3 class="font-bold text-forest text-sm">All services in {city.name}</h3>
+          <span class="text-green text-xs font-medium mt-1 inline-block">View all</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Same service in nearby cities -->
+  <section class="py-12 bg-cream">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-xl font-bold text-forest mb-4 text-center">{service.title} in Nearby Communities</h2>
+      <div class="flex flex-wrap justify-center gap-2">
+        {relatedCities.map(c => (
+          <a href={`/${c.slug}-sc-${service.slug}/`} class="bg-white px-3 py-1.5 rounded-lg text-sm text-forest hover:bg-earth/20 transition-colors">
+            {c.name}, SC
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-4">
+        <a href="/service-areas/" class="text-green text-sm font-bold hover:text-forest transition-colors">View all service areas</a>
+      </div>
+    </div>
+  </section>
+
+  <CTA heading={`Need ${service.title} in ${city.name}?`} />
+</Layout>

@@ -8,7 +8,7 @@ interface Props {
 
 const { 
   heading = "Ready to Remove That Stump?",
-  text = "Text us a photo for a free quote — most estimates within hours."
+  text = "Text us a photo for a free quote. Most estimates within hours."
 } = Astro.props;
 ---
 <section class="bg-earth py-12">
@@ -17,10 +17,10 @@ const {
     <p class="text-forest/80 text-lg mb-6">{text}</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a href={business.phoneTel} class="bg-forest text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-green transition-colors shadow-lg">
-        📞 Call {business.phone}
+        Call {business.phone}
       </a>
       <a href={business.smsLink} class="bg-white text-forest px-8 py-4 rounded-xl text-lg font-bold hover:bg-cream transition-colors shadow-lg border-2 border-forest">
-        📱 Text Us a Photo
+        Text Us a Photo
       </a>
     </div>
   </div>

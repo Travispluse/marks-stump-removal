@@ -1,0 +1,71 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CTA from '../../../components/CTA.astro';
+import { business, services, cities } from '../../../data/business';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return services.map(service => ({
+    params: { service: service.slug },
+    props: { service },
+  }));
+};
+
+const { service } = Astro.props;
+const otherServices = services.filter(s => s.slug !== service.slug);
+const topCities = cities.slice(0, 15);
+---
+<Layout
+  title={`${service.title} in Greenville, SC | Mark's Stump Removal`}
+  description={`Professional ${service.title.toLowerCase()} in Greenville, SC and Upstate South Carolina. 5-star rated, free estimates. Call (864) 214-5623.`}
+>
+  <section class="bg-forest text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">{service.title} in Greenville, SC</h1>
+      <p class="text-xl text-gray-200">Serving Upstate South Carolina within a 70-mile radius of Greenville.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <p class="text-gray-600 text-lg mb-8">{service.long}</p>
+
+      <h2 class="text-2xl font-bold text-forest mb-4">What You Get</h2>
+      <ul class="space-y-3 text-gray-600 mb-12">
+        {service.benefits.map(b => (
+          <li class="flex items-start gap-3">
+            <span class="text-green font-bold text-xl mt-0.5">&#10003;</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- City links for this service -->
+      <h2 class="text-2xl font-bold text-forest mb-4">{service.title} by Location</h2>
+      <p class="text-gray-600 mb-6">We provide {service.title.toLowerCase()} throughout Upstate South Carolina. Select your city for local information:</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-12">
+        {topCities.map(city => (
+          <a href={`/${city.slug}-sc-${service.slug}/`} class="bg-cream hover:bg-earth/20 rounded-lg p-3 text-sm font-medium text-forest transition-colors text-center">
+            {city.name}, SC
+          </a>
+        ))}
+      </div>
+      <a href="/service-areas/" class="text-green font-bold hover:text-forest transition-colors">View all service areas</a>
+
+      <!-- Other services -->
+      <div class="mt-16 pt-12 border-t border-gray-200">
+        <h2 class="text-2xl font-bold text-forest mb-6">Other Services We Offer</h2>
+        <div class="grid md:grid-cols-3 gap-4">
+          {otherServices.map(s => (
+            <a href={`/services/${s.slug}/`} class="bg-cream rounded-xl p-5 hover:shadow-md transition-shadow block">
+              <h3 class="font-bold text-forest mb-1">{s.title}</h3>
+              <p class="text-gray-600 text-sm">{s.short}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA heading={`Need ${service.title}?`} text="Text us a photo of the problem area for a free, no-obligation quote." />
+</Layout>

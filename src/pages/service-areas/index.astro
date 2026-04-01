@@ -1,40 +1,59 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
-import { cities, business } from '../../data/business';
+import { cities, services, business } from '../../data/business';
+
+// Group cities by county
+const grouped = cities.reduce((acc, city) => {
+  if (!acc[city.county]) acc[city.county] = [];
+  acc[city.county].push(city);
+  return acc;
+}, {} as Record<string, typeof cities>);
 ---
 <Layout
-  title="Service Areas | Stump Grinding in Greenville, Spartanburg & Upstate SC"
-  description="Mark's Stump Removal serves Greenville, Spartanburg, Taylors, Greer, Mauldin, Simpsonville, and 15+ Upstate SC communities. Free estimates: (864) 214-5623."
+  title="Service Areas | Stump Grinding Across Upstate SC | Mark's Stump Removal"
+  description={`Mark's Stump Removal serves ${cities.length}+ communities within 70 miles of Greenville, SC. Professional stump grinding, root removal, land clearing. Free estimates: (864) 214-5623.`}
 >
   <section class="bg-forest text-white py-16">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Service Areas</h1>
-      <p class="text-xl text-gray-200">Proudly serving Greenville and communities throughout Upstate South Carolina.</p>
+      <p class="text-xl text-gray-200">Proudly serving {cities.length}+ communities within 70 miles of Greenville, South Carolina.</p>
     </div>
   </section>
 
   <section class="py-16 bg-white">
     <div class="max-w-6xl mx-auto px-4">
       <p class="text-gray-600 text-lg text-center max-w-3xl mx-auto mb-12">
-        Based in Wade Hampton, we serve homeowners, contractors, landscapers, and property managers throughout the Greenville–Spartanburg area. If you're within about an hour of our home base, we can usually help.
+        Based in Wade Hampton, we serve homeowners, contractors, landscapers, and property managers throughout Upstate South Carolina and into the North Carolina border communities. If you are within about 70 miles of Greenville, we can help.
       </p>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {cities.map(city => (
-          <a href={`/${city.slug}-sc-stump-grinding/`} class="bg-cream hover:bg-earth/20 rounded-xl p-6 transition-colors group">
-            <h2 class="text-lg font-bold text-forest group-hover:text-green transition-colors">{city.name}, SC</h2>
-            <p class="text-gray-500 text-sm mt-1 line-clamp-2">{city.description.slice(0, 120)}...</p>
-            <span class="text-earth text-sm font-medium mt-2 inline-block">Learn more →</span>
-          </a>
-        ))}
-      </div>
+
+      <!-- By county -->
+      {Object.entries(grouped).map(([county, countyCities]) => (
+        <div class="mb-10">
+          <h2 class="text-2xl font-bold text-forest mb-4">{county}</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {countyCities.map(city => (
+              <a href={`/stump-grinding-${city.slug}-sc/`} class="bg-cream hover:bg-earth/20 rounded-xl p-4 transition-colors group block">
+                <div class="flex items-center justify-between">
+                  <h3 class="font-bold text-forest group-hover:text-green transition-colors">{city.name}, SC</h3>
+                  <span class="text-gray-400 text-sm">{city.distance}</span>
+                </div>
+                <div class="flex flex-wrap gap-1 mt-2">
+                  {services.map(s => (
+                    <a href={`/${city.slug}-sc-${s.slug}/`} class="text-xs text-green hover:text-forest hover:underline">{s.title}</a>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
 
       <div class="mt-12 bg-cream rounded-2xl p-8 text-center">
-        <h2 class="text-2xl font-bold text-forest mb-3">Don't See Your Area?</h2>
-        <p class="text-gray-600 mb-4">We may still be able to help. Give us a call or text and we'll let you know if we serve your area.</p>
+        <h2 class="text-2xl font-bold text-forest mb-3">Do Not See Your Area?</h2>
+        <p class="text-gray-600 mb-4">We may still be able to help. Give us a call or text and we will let you know if we serve your area.</p>
         <a href={business.phoneTel} class="inline-block bg-forest text-white px-6 py-3 rounded-xl font-bold hover:bg-green transition-colors">
-          📞 Call {business.phone}
+          Call {business.phone}
         </a>
       </div>
     </div>

@@ -1,11 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
-import { business } from '../../data/business';
+import { business, services } from '../../data/business';
 ---
 <Layout
   title="Stump Grinding Services | Mark's Stump Removal | Greenville, SC"
-  description="Stump grinding, root removal, land clearing, and emergency stump services in Greenville, SC. Free estimates — call or text (864) 214-5623."
+  description="Stump grinding, root removal, land clearing, and emergency stump services in Greenville, SC and Upstate South Carolina. Free estimates — call or text (864) 214-5623."
 >
   <section class="bg-forest text-white py-16">
     <div class="max-w-4xl mx-auto px-4 text-center">
@@ -14,64 +14,25 @@ import { business } from '../../data/business';
     </div>
   </section>
 
-  <section class="py-16 bg-white" id="stump-grinding">
+  <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4">
-      <div class="mb-16">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="text-4xl">🪵</span>
-          <h2 class="text-3xl font-bold text-forest">Stump Grinding</h2>
+      {services.map((service, i) => (
+        <div class={`mb-16 ${i > 0 ? 'pt-16 border-t border-gray-200' : ''}`} id={service.slug}>
+          <h2 class="text-3xl font-bold text-forest mb-4">{service.title}</h2>
+          <p class="text-gray-600 text-lg mb-6">{service.long}</p>
+          <ul class="space-y-2 text-gray-600 mb-6">
+            {service.benefits.map(b => (
+              <li class="flex items-start gap-2">
+                <span class="text-green font-bold mt-0.5">&#10003;</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+          <a href={`/services/${service.slug}/`} class="text-green font-bold hover:text-forest transition-colors">
+            Learn more about {service.title.toLowerCase()}
+          </a>
         </div>
-        <p class="text-gray-600 text-lg mb-4">Our primary service — and what we do best. Using professional-grade stump grinders, we reduce tree stumps to wood chips 6–12 inches below the soil surface.</p>
-        <ul class="space-y-2 text-gray-600">
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Any size stump — from small ornamental trees to massive hardwoods</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Grinding depth 6–12 inches below grade (deeper available on request)</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Minimal disruption to surrounding lawn and landscaping</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Wood chips can be left as mulch or hauled away</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Most residential stumps completed in 30–60 minutes</li>
-        </ul>
-      </div>
-
-      <div class="mb-16" id="root-removal">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="text-4xl">🌿</span>
-          <h2 class="text-3xl font-bold text-forest">Root Removal</h2>
-        </div>
-        <p class="text-gray-600 text-lg mb-4">Surface roots and root balls can be tripping hazards, damage foundations, and make mowing a nightmare. We remove them cleanly.</p>
-        <ul class="space-y-2 text-gray-600">
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Surface root grinding and removal</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Full root ball extraction for construction sites</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Invasive root system management</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Prevents regrowth and sucker shoots</li>
-        </ul>
-      </div>
-
-      <div class="mb-16" id="land-clearing">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="text-4xl">🏗️</span>
-          <h2 class="text-3xl font-bold text-forest">Land Clearing</h2>
-        </div>
-        <p class="text-gray-600 text-lg mb-4">Building a new home? Adding a pool? Clearing a lot? We handle multi-stump jobs and brush removal to get your property ready.</p>
-        <ul class="space-y-2 text-gray-600">
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Multi-stump lots and new construction prep</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Brush and undergrowth removal</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Volume discounts for large jobs</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Commercial and residential properties</li>
-        </ul>
-      </div>
-
-      <div id="emergency">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="text-4xl">⚡</span>
-          <h2 class="text-3xl font-bold text-forest">Emergency Service</h2>
-        </div>
-        <p class="text-gray-600 text-lg mb-4">Storm damage can leave dangerous stumps and debris. We offer priority scheduling for urgent situations.</p>
-        <ul class="space-y-2 text-gray-600">
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Priority scheduling for storm damage</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Hazardous stump removal</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Quick response times</li>
-          <li class="flex items-start gap-2"><span class="text-green font-bold">✓</span> Available for HOAs and property managers</li>
-        </ul>
-      </div>
+      ))}
     </div>
   </section>
 
@@ -83,12 +44,12 @@ import { business } from '../../data/business';
         <div class="text-center">
           <div class="w-14 h-14 bg-earth text-forest rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
           <h3 class="text-lg font-bold text-forest mb-2">Text Us a Photo</h3>
-          <p class="text-gray-600">Snap a photo of the stump from 10–15 feet away and text it to {business.phone}.</p>
+          <p class="text-gray-600">Snap a photo of the stump from 10-15 feet away and text it to {business.phone}.</p>
         </div>
         <div class="text-center">
           <div class="w-14 h-14 bg-earth text-forest rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
           <h3 class="text-lg font-bold text-forest mb-2">Get Your Free Quote</h3>
-          <p class="text-gray-600">We'll review the photo and reply with a fair, no-obligation estimate — usually within hours.</p>
+          <p class="text-gray-600">We review the photo and reply with a fair, no-obligation estimate — usually within hours.</p>
         </div>
         <div class="text-center">
           <div class="w-14 h-14 bg-earth text-forest rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>

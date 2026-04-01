@@ -1,0 +1,132 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import Stars from '../../components/Stars.astro';
+import { cities, business, services } from '../../data/business';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return cities.map(city => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+};
+
+const { city } = Astro.props;
+const nearbyCities = cities.filter(c => c.slug !== city.slug && c.county === city.county).slice(0, 6);
+const otherCities = cities.filter(c => c.slug !== city.slug && c.county !== city.county).slice(0, 6);
+const relatedCities = [...nearbyCities, ...otherCities].slice(0, 8);
+---
+<Layout
+  title={`Stump Grinding in ${city.name}, SC | Mark's Stump Removal`}
+  description={`Professional stump grinding and tree stump removal in ${city.name}, South Carolina. 5-star rated, free estimates. Serving ${city.county}. Call or text (864) 214-5623.`}
+>
+  <section class="bg-forest text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <Stars />
+      <h1 class="text-4xl md:text-5xl font-bold mt-6 mb-4">Stump Grinding in {city.name}, SC</h1>
+      <p class="text-xl text-gray-200 max-w-2xl mx-auto">Professional stump removal for {city.name} homeowners and businesses. Free estimates — text us a photo.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <p class="text-gray-600 text-lg mb-8">{city.description}</p>
+
+      <!-- Services available in this city -->
+      <h2 class="text-2xl font-bold text-forest mb-6">Services Available in {city.name}</h2>
+      <div class="grid md:grid-cols-2 gap-4 mb-12">
+        {services.map(service => (
+          <a href={`/${city.slug}-sc-${service.slug}/`} class="bg-cream rounded-xl p-5 hover:shadow-md transition-shadow block">
+            <h3 class="font-bold text-forest mb-1">{service.title} in {city.name}</h3>
+            <p class="text-gray-600 text-sm">{service.short}</p>
+            <span class="text-green text-sm font-medium mt-2 inline-block">Learn more</span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Local landmarks -->
+      <h2 class="text-2xl font-bold text-forest mb-4">Serving All of {city.name}</h2>
+      <p class="text-gray-600 mb-4">
+        We provide stump grinding and tree stump removal services throughout {city.name}, including properties near:
+      </p>
+      <ul class="grid md:grid-cols-2 gap-2 mb-8">
+        {city.landmarks.map(l => (
+          <li class="text-gray-600 flex items-start gap-2">
+            <span class="text-green font-bold mt-0.5">&#10003;</span>
+            <span>{l}</span>
+          </li>
+        ))}
+      </ul>
+
+      {city.neighborhoods.length > 0 && (
+        <div class="mb-12">
+          <h3 class="text-xl font-bold text-forest mb-3">Neighborhoods We Serve in {city.name}</h3>
+          <div class="flex flex-wrap gap-2">
+            {city.neighborhoods.map(n => (
+              <span class="bg-cream px-3 py-1.5 rounded-lg text-sm text-forest">{n}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Why choose us -->
+      <h2 class="text-2xl font-bold text-forest mb-6">Why {city.name} Residents Choose Mark's Stump Removal</h2>
+      <ul class="space-y-3 text-gray-600 mb-12">
+        <li class="flex items-start gap-3">
+          <span class="text-green font-bold text-xl">&#10003;</span>
+          <span><strong>Perfect 5-star rating</strong> — {business.reviewCount} Google reviews from happy customers across Upstate SC</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-green font-bold text-xl">&#10003;</span>
+          <span><strong>Just {city.distance} from our base</strong> — fast response times for {city.name} properties</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-green font-bold text-xl">&#10003;</span>
+          <span><strong>Free estimates via text</strong> — snap a photo, text it to us, get a quote within hours</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-green font-bold text-xl">&#10003;</span>
+          <span><strong>Same-week scheduling</strong> — no long waits for service</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-green font-bold text-xl">&#10003;</span>
+          <span><strong>Clean, professional results</strong> — we leave your yard level, tidy, and ready for whatever comes next</span>
+        </li>
+      </ul>
+
+      <!-- Quote CTA -->
+      <div class="bg-forest text-white rounded-2xl p-8 mb-12">
+        <h2 class="text-2xl font-bold mb-3">Get a Free Stump Grinding Quote in {city.name}</h2>
+        <p class="text-gray-200 mb-6">The fastest way to get a quote: text a photo of your stump to {business.phone}. Stand 10-15 feet back so we can see the size and access. We will reply with a fair estimate, usually within hours.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href={business.phoneTel} class="bg-earth text-forest px-6 py-3 rounded-xl font-bold text-center hover:bg-amber-300 transition-colors">
+            Call {business.phone}
+          </a>
+          <a href={business.smsLink} class="bg-white/10 backdrop-blur text-white px-6 py-3 rounded-xl font-bold text-center hover:bg-white/20 transition-colors border border-white/30">
+            Text Us a Photo
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby cities -->
+  <section class="py-12 bg-cream">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-xl font-bold text-forest mb-4 text-center">Stump Grinding in Nearby Communities</h2>
+      <div class="flex flex-wrap justify-center gap-2">
+        {relatedCities.map(c => (
+          <a href={`/stump-grinding-${c.slug}-sc/`} class="bg-white px-3 py-1.5 rounded-lg text-sm text-forest hover:bg-earth/20 transition-colors">
+            {c.name}, SC
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-4">
+        <a href="/service-areas/" class="text-green text-sm font-bold hover:text-forest transition-colors">View all service areas</a>
+      </div>
+    </div>
+  </section>
+
+  <CTA heading={`Ready to Remove That Stump in ${city.name}?`} />
+</Layout>
