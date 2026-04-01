@@ -1,0 +1,132 @@
+---
+import { videos } from '../data/videos';
+
+const pageId = "61571973964718";
+const topRow = videos.slice(0, 8);
+const bottomRow = videos.slice(7, 15);
+---
+
+<section class="bg-dark py-10 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 mb-6">
+    <h2 class="text-2xl font-bold text-white text-center">See Our Work in Action</h2>
+    <p class="text-gray-400 text-center text-sm mt-1">Real jobs from Mark's Stump Removal</p>
+  </div>
+
+  <!-- Top row - slides right -->
+  <div class="carousel-wrapper mb-4">
+    <div class="carousel-track carousel-right">
+      {[...topRow, ...topRow].map((video) => (
+        <div class="carousel-item">
+          <div class="video-embed">
+            <iframe
+              src={`https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F${pageId}%2Fvideos%2F${video.id}%2F&show_text=false&t=0`}
+              width="340"
+              height="220"
+              style="border:none;overflow:hidden"
+              scrolling="no"
+              frameborder="0"
+              allowfullscreen={true}
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              loading="lazy"
+              title={video.title}
+            ></iframe>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Bottom row - slides left -->
+  <div class="carousel-wrapper">
+    <div class="carousel-track carousel-left">
+      {[...bottomRow, ...bottomRow].map((video) => (
+        <div class="carousel-item">
+          <div class="video-embed">
+            <iframe
+              src={`https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F${pageId}%2Fvideos%2F${video.id}%2F&show_text=false&t=0`}
+              width="340"
+              height="220"
+              style="border:none;overflow:hidden"
+              scrolling="no"
+              frameborder="0"
+              allowfullscreen={true}
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              loading="lazy"
+              title={video.title}
+            ></iframe>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .carousel-wrapper {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+  }
+
+  .carousel-right {
+    animation: slideRight 60s linear infinite;
+  }
+
+  .carousel-left {
+    animation: slideLeft 60s linear infinite;
+  }
+
+  .carousel-item {
+    flex-shrink: 0;
+  }
+
+  .video-embed {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #2a2a2a;
+    width: 340px;
+    height: 220px;
+  }
+
+  .video-embed iframe {
+    display: block;
+  }
+
+  @keyframes slideRight {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  @keyframes slideLeft {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .carousel-wrapper:hover .carousel-track {
+    animation-play-state: paused;
+  }
+
+  @media (max-width: 640px) {
+    .video-embed {
+      width: 280px;
+      height: 180px;
+    }
+    .video-embed iframe {
+      width: 280px;
+      height: 180px;
+    }
+  }
+</style>

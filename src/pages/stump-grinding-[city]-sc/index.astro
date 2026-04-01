@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
 import Stars from '../../components/Stars.astro';
+import VideoCarousel from '../../components/VideoCarousel.astro';
 import { cities, business, services } from '../../data/business';
 import type { GetStaticPaths } from 'astro';
 
@@ -28,6 +29,8 @@ const relatedCities = [...nearbyCities, ...otherCities].slice(0, 8);
       <p class="text-xl text-gray-200 max-w-2xl mx-auto">Professional stump removal for {city.name} homeowners and businesses. Free estimates — text us a photo.</p>
     </div>
   </section>
+
+  <VideoCarousel />
 
   <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4">

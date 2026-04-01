@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
 import Stars from '../../components/Stars.astro';
+import VideoCarousel from '../../components/VideoCarousel.astro';
 import { cities, services, business } from '../../data/business';
 import type { GetStaticPaths } from 'astro';
 
@@ -35,6 +36,8 @@ const relatedCities = [...nearbyCities, ...otherCities].slice(0, 6);
       <p class="text-xl text-gray-200 max-w-2xl mx-auto">Professional {service.title.toLowerCase()} for {city.name} homeowners, contractors, and property managers. Free estimates available.</p>
     </div>
   </section>
+
+  <VideoCarousel />
 
   <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4">

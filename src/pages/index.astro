@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Stars from '../components/Stars.astro';
 import CTA from '../components/CTA.astro';
+import VideoCarousel from '../components/VideoCarousel.astro';
 import { business, services, testimonials, faqs, cities } from '../data/business';
 ---
 <Layout 
@@ -28,6 +29,8 @@ import { business, services, testimonials, faqs, cities } from '../data/business
       </div>
     </div>
   </section>
+
+  <VideoCarousel />
 
   <!-- Services -->
   <section class="py-16 bg-white" id="services">

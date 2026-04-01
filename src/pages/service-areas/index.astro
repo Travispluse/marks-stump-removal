@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
+import VideoCarousel from '../../components/VideoCarousel.astro';
 import { cities, services, business } from '../../data/business';
 
 // Group cities by county
@@ -20,6 +21,8 @@ const grouped = cities.reduce((acc, city) => {
       <p class="text-xl text-gray-200">Proudly serving {cities.length}+ communities within 70 miles of Greenville, South Carolina.</p>
     </div>
   </section>
+
+  <VideoCarousel />
 
   <section class="py-16 bg-white">
     <div class="max-w-6xl mx-auto px-4">

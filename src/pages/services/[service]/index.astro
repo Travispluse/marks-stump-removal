@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import CTA from '../../../components/CTA.astro';
+import VideoCarousel from '../../../components/VideoCarousel.astro';
 import { business, services, cities } from '../../../data/business';
 import type { GetStaticPaths } from 'astro';
 
@@ -25,6 +26,8 @@ const topCities = cities.slice(0, 15);
       <p class="text-xl text-gray-200">Serving Upstate South Carolina within a 70-mile radius of Greenville.</p>
     </div>
   </section>
+
+  <VideoCarousel />
 
   <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4">

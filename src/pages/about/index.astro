@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
 import Stars from '../../components/Stars.astro';
+import VideoCarousel from '../../components/VideoCarousel.astro';
 import { business } from '../../data/business';
 ---
 <Layout
@@ -14,6 +15,8 @@ import { business } from '../../data/business';
       <p class="text-xl text-gray-200">Locally owned. Honest pricing. Clean results.</p>
     </div>
   </section>
+
+  <VideoCarousel />
 
   <section class="py-16 bg-white">
     <div class="max-w-3xl mx-auto px-4">
