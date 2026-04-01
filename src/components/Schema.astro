@@ -16,24 +16,30 @@ const schema = {
   "telephone": business.phone,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "1801 Hood Rd",
-    "addressLocality": "Greer",
+    "streetAddress": "127 Richbourg Rd",
+    "addressLocality": "Greenville",
     "addressRegion": "SC",
-    "postalCode": "29650",
+    "postalCode": "29615",
     "addressCountry": "US"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 34.938,
-    "longitude": -82.229
+    "latitude": 34.876,
+    "longitude": -82.374
   },
   "url": `https://${business.domain}`,
   "priceRange": "$$",
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "dayOfWeek": ["Wednesday","Thursday"],
       "opens": "07:00",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Friday","Saturday"],
+      "opens": "07:30",
       "closes": "19:00"
     }
   ],
