@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import { cities, business } from '../../data/business';
+---
+<Layout
+  title="Service Areas | Stump Grinding in Greenville, Spartanburg & Upstate SC"
+  description="Mark's Stump Removal serves Greenville, Spartanburg, Taylors, Greer, Mauldin, Simpsonville, and 15+ Upstate SC communities. Free estimates: (864) 214-5623."
+>
+  <section class="bg-forest text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Service Areas</h1>
+      <p class="text-xl text-gray-200">Proudly serving Greenville and communities throughout Upstate South Carolina.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-gray-600 text-lg text-center max-w-3xl mx-auto mb-12">
+        Based in Wade Hampton, we serve homeowners, contractors, landscapers, and property managers throughout the Greenville–Spartanburg area. If you're within about an hour of our home base, we can usually help.
+      </p>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {cities.map(city => (
+          <a href={`/${city.slug}-sc-stump-grinding/`} class="bg-cream hover:bg-earth/20 rounded-xl p-6 transition-colors group">
+            <h2 class="text-lg font-bold text-forest group-hover:text-green transition-colors">{city.name}, SC</h2>
+            <p class="text-gray-500 text-sm mt-1 line-clamp-2">{city.description.slice(0, 120)}...</p>
+            <span class="text-earth text-sm font-medium mt-2 inline-block">Learn more →</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-12 bg-cream rounded-2xl p-8 text-center">
+        <h2 class="text-2xl font-bold text-forest mb-3">Don't See Your Area?</h2>
+        <p class="text-gray-600 mb-4">We may still be able to help. Give us a call or text and we'll let you know if we serve your area.</p>
+        <a href={business.phoneTel} class="inline-block bg-forest text-white px-6 py-3 rounded-xl font-bold hover:bg-green transition-colors">
+          📞 Call {business.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Layout>

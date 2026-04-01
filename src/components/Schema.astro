@@ -1,0 +1,55 @@
+---
+import { business } from '../data/business';
+
+interface Props {
+  page?: string;
+  description?: string;
+}
+
+const { page, description } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": business.name,
+  "image": "",
+  "telephone": business.phone,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "127 Richbourg Rd",
+    "addressLocality": "Greenville",
+    "addressRegion": "SC",
+    "postalCode": "29615",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 34.876,
+    "longitude": -82.374
+  },
+  "url": `https://${business.domain}`,
+  "priceRange": "$$",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "07:00",
+      "closes": "19:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": business.rating,
+    "reviewCount": business.reviewCount,
+    "bestRating": 5
+  },
+  "areaServed": [
+    "Greenville, SC", "Taylors, SC", "Greer, SC", "Mauldin, SC",
+    "Simpsonville, SC", "Spartanburg, SC", "Five Forks, SC",
+    "Wade Hampton, SC", "Travelers Rest, SC", "Easley, SC"
+  ],
+  "description": description || "Professional stump grinding and tree stump removal in Greenville, SC. 5-star rated, free estimates. Call or text (864) 214-5623.",
+  "sameAs": [business.facebook]
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import Stars from '../../components/Stars.astro';
+import { business } from '../../data/business';
+---
+<Layout
+  title="About Mark's Stump Removal | Greenville, SC Stump Grinding"
+  description="Locally owned stump grinding company in Greenville, SC. Meet Mark — dedicated to honest pricing, clean work areas, and 5-star service."
+>
+  <section class="bg-forest text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">About Mark's Stump Removal</h1>
+      <p class="text-xl text-gray-200">Locally owned. Honest pricing. Clean results.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none">
+        <h2 class="text-2xl font-bold text-forest mb-4">Your Local Stump Grinding Expert</h2>
+        <p class="text-gray-600 mb-6">
+          Mark's Stump Removal is a locally owned and operated stump grinding company based in Wade Hampton, Greenville, South Carolina. We specialize in one thing — removing tree stumps quickly, cleanly, and at a fair price.
+        </p>
+        <p class="text-gray-600 mb-6">
+          When you call Mark's, you're talking to the person who shows up to do the work. No middlemen, no sales pitches, no runaround. Just honest pricing, reliable scheduling, and results you can see.
+        </p>
+
+        <h2 class="text-2xl font-bold text-forest mb-4 mt-10">What We Believe In</h2>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-cream rounded-xl p-6">
+            <h3 class="font-bold text-forest mb-2">💰 Honest Pricing</h3>
+            <p class="text-gray-600 text-sm">The price we quote is the price you pay. No surprise fees, no upsells, no pressure.</p>
+          </div>
+          <div class="bg-cream rounded-xl p-6">
+            <h3 class="font-bold text-forest mb-2">🧹 Clean Work Areas</h3>
+            <p class="text-gray-600 text-sm">We leave your property better than we found it. Level ground, tidy chips, no mess.</p>
+          </div>
+          <div class="bg-cream rounded-xl p-6">
+            <h3 class="font-bold text-forest mb-2">📅 Reliable Scheduling</h3>
+            <p class="text-gray-600 text-sm">When we say we'll be there, we'll be there. Same-week scheduling available.</p>
+          </div>
+          <div class="bg-cream rounded-xl p-6">
+            <h3 class="font-bold text-forest mb-2">🤝 Treat It Like Our Own</h3>
+            <p class="text-gray-600 text-sm">We treat your property with the same care and respect we'd give our own yard.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-forest mb-4 mt-10">Serving the Upstate</h2>
+        <p class="text-gray-600 mb-6">
+          From our home base in Wade Hampton, we serve homeowners, contractors, landscapers, and property managers throughout the Greenville–Spartanburg area. Whether it's a single backyard stump or a multi-stump commercial lot, we bring the same quality and care to every job.
+        </p>
+        
+        <div class="bg-forest text-white rounded-2xl p-8 text-center">
+          <Stars />
+          <p class="text-lg mt-4 text-gray-200">
+            {business.reviewCount} satisfied customers and counting. See what they have to say on Google.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Layout>

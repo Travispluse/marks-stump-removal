@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Stars from '../components/Stars.astro';
+import CTA from '../components/CTA.astro';
+import { business, services, testimonials, faqs, cities } from '../data/business';
+---
+<Layout 
+  title="Mark's Stump Removal | Professional Stump Grinding in Greenville, SC"
+  description="5-star rated stump grinding in Greenville, SC. Free estimates — text us a photo! Locally owned, fully insured. Call (864) 214-5623."
+>
+  <!-- Hero -->
+  <section class="bg-forest text-white py-20 md:py-28">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <Stars />
+      <h1 class="text-4xl md:text-6xl font-bold mt-6 mb-4 leading-tight">
+        Professional Stump Grinding<br class="hidden md:block" /> in Greenville, SC
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
+        Fast, clean stump removal at honest prices. Text us a photo of your stump for a free quote — most estimates within hours.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={business.phoneTel} class="bg-earth text-forest px-8 py-4 rounded-xl text-lg font-bold hover:bg-amber-300 transition-colors shadow-xl">
+          📞 Call {business.phone}
+        </a>
+        <a href={business.smsLink} class="bg-white/10 backdrop-blur text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-white/20 transition-colors border border-white/30">
+          📱 Text Us a Photo for Free Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="py-16 bg-white" id="services">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-forest mb-10">Our Services</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {services.map(service => (
+          <div class="bg-cream rounded-2xl p-6 text-center hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-3">{service.icon}</div>
+            <h3 class="text-xl font-bold text-forest mb-2">{service.title}</h3>
+            <p class="text-gray-600 text-sm">{service.short}</p>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/services/" class="text-green font-bold hover:text-forest transition-colors">View all services →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-16 bg-cream">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-forest mb-10">Why Choose Mark's?</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">⭐</span>
+          </div>
+          <h3 class="text-lg font-bold text-forest mb-2">5-Star Rated</h3>
+          <p class="text-gray-600">Perfect 5.0 rating across {business.reviewCount} Google reviews. Our customers speak for themselves.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">📍</span>
+          </div>
+          <h3 class="text-lg font-bold text-forest mb-2">Locally Owned</h3>
+          <p class="text-gray-600">Based right here in Wade Hampton, Greenville. We know the area, the soil, and the trees.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">💰</span>
+          </div>
+          <h3 class="text-lg font-bold text-forest mb-2">Free Estimates</h3>
+          <p class="text-gray-600">Text us a photo for a fast quote. No obligation, no pressure, no hidden fees.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">🛡️</span>
+          </div>
+          <h3 class="text-lg font-bold text-forest mb-2">Fully Insured</h3>
+          <p class="text-gray-600">Licensed and insured for your peace of mind. We protect your property like it's our own.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">🧹</span>
+          </div>
+          <h3 class="text-lg font-bold text-forest mb-2">Clean Results</h3>
+          <p class="text-gray-600">We leave your yard better than we found it. Level ground, no mess, ready for landscaping.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-earth/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">📅</span>
+          </div>
+          <h3 class="text-lg font-bold text-forest mb-2">Same-Week Scheduling</h3>
+          <p class="text-gray-600">No waiting weeks. We offer fast turnaround so you can get your yard back on track.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 bg-forest text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-10">What Our Customers Say</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        {testimonials.map(t => (
+          <div class="bg-white/10 backdrop-blur rounded-2xl p-8">
+            <div class="text-yellow-400 text-xl mb-3">★★★★★</div>
+            <p class="text-lg italic mb-4">"{t.text}"</p>
+            <p class="font-bold text-earth">— {t.name}</p>
+          </div>
+        ))}
+      </div>
+      <a href="https://www.google.com/search?q=Mark's+Stump+Removal+Greenville+SC+reviews" target="_blank" rel="noopener" class="inline-block mt-8 text-earth hover:underline font-medium">Read all {business.reviewCount} reviews on Google →</a>
+    </div>
+  </section>
+
+  <!-- Service Areas -->
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-forest mb-4">Service Areas</h2>
+      <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">We serve Greenville and communities throughout Upstate South Carolina. If you're within an hour of Wade Hampton, we can help.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+        {cities.map(city => (
+          <a href={`/${city.slug}-sc-stump-grinding/`} class="bg-cream hover:bg-earth/20 rounded-xl p-4 text-center font-medium text-forest transition-colors">
+            {city.name}, SC
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 bg-cream" id="faq">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-forest mb-10">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {faqs.map(faq => (
+          <details class="bg-white rounded-xl p-6 shadow-sm group">
+            <summary class="font-bold text-forest cursor-pointer list-none flex items-center justify-between">
+              {faq.q}
+              <span class="text-earth text-xl group-open:rotate-45 transition-transform">+</span>
+            </summary>
+            <p class="mt-3 text-gray-600">{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Layout>

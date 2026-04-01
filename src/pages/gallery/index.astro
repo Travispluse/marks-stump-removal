@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+---
+<Layout
+  title="Before & After Gallery | Mark's Stump Removal | Greenville, SC"
+  description="See stump grinding before and after results from Mark's Stump Removal in Greenville, SC. Residential, commercial, large stumps, tight access jobs."
+>
+  <section class="bg-forest text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Before & After Gallery</h1>
+      <p class="text-xl text-gray-200">Real results from real jobs around Upstate SC.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- Categories -->
+      <div class="grid md:grid-cols-2 gap-8">
+        {[
+          { title: "Residential Stumps", desc: "Backyard and front yard stump grinding for homeowners." },
+          { title: "Commercial Properties", desc: "Parking lots, business fronts, and HOA common areas." },
+          { title: "Large Hardwood Stumps", desc: "Oak, maple, and other large-diameter stumps ground below grade." },
+          { title: "Tight Access Jobs", desc: "Fenced yards, narrow gates, hillside properties." },
+          { title: "Multi-Stump Lots", desc: "Land clearing and new construction stump removal." },
+          { title: "Root Removal", desc: "Surface roots and root ball extraction." },
+        ].map(cat => (
+          <div class="rounded-2xl overflow-hidden shadow-md">
+            <div class="bg-forest/5 h-48 flex items-center justify-center">
+              <div class="text-center px-8">
+                <div class="text-5xl mb-3 opacity-30">📷</div>
+                <p class="text-gray-400 text-sm">Photos coming soon</p>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-bold text-forest text-lg">{cat.title}</h3>
+              <p class="text-gray-600 text-sm mt-1">{cat.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 bg-cream rounded-2xl p-8 text-center">
+        <h2 class="text-2xl font-bold text-forest mb-3">Photos Coming Soon!</h2>
+        <p class="text-gray-600 max-w-xl mx-auto">
+          We're building our gallery with real before-and-after shots from jobs around Greenville and the Upstate. In the meantime, check out our <a href="https://www.google.com/search?q=Mark's+Stump+Removal+Greenville+SC" target="_blank" rel="noopener" class="text-green font-bold hover:underline">Google reviews</a> to see what our customers are saying.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</Layout>

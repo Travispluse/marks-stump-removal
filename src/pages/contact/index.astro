@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { business } from '../../data/business';
+---
+<Layout
+  title="Contact Mark's Stump Removal | Free Estimates | Greenville, SC"
+  description="Get a free stump grinding estimate in Greenville, SC. Call or text (864) 214-5623. Text us a photo of your stump for the fastest quote."
+>
+  <section class="bg-forest text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+      <p class="text-xl text-gray-200">Free estimates — text us a photo for the fastest response.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div>
+          <h2 class="text-2xl font-bold text-forest mb-6">Get In Touch</h2>
+          
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-earth/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-2xl">📞</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-forest">Call or Text</h3>
+                <a href={business.phoneTel} class="text-green text-lg font-bold hover:text-forest">{business.phone}</a>
+                <p class="text-gray-500 text-sm mt-1">Text us a photo for the fastest quote!</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-earth/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-2xl">📍</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-forest">Location</h3>
+                <p class="text-gray-600">{business.address}</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-earth/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-2xl">🕐</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-forest">Hours</h3>
+                <p class="text-gray-600">{business.hours}</p>
+                <p class="text-gray-600">{business.hoursClosed}</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-earth/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-2xl">📘</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-forest">Facebook</h3>
+                <a href={business.facebook} target="_blank" rel="noopener" class="text-green hover:text-forest">Follow us on Facebook</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- How to Get a Quote -->
+          <div class="mt-10 bg-cream rounded-2xl p-6">
+            <h3 class="text-lg font-bold text-forest mb-3">📱 Fastest Way to Get a Quote</h3>
+            <ol class="space-y-2 text-gray-600 text-sm">
+              <li><strong>1.</strong> Stand 10–15 feet from the stump</li>
+              <li><strong>2.</strong> Take a photo showing the full stump and access area</li>
+              <li><strong>3.</strong> Text it to <a href={business.smsLink} class="text-green font-bold">{business.phone}</a></li>
+              <li><strong>4.</strong> We'll reply with a free estimate — usually within hours</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div>
+          <h2 class="text-2xl font-bold text-forest mb-6">Send Us a Message</h2>
+          <form name="contact" method="POST" data-netlify="true" class="space-y-4">
+            <input type="hidden" name="form-name" value="contact" />
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+              <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green focus:ring-1 focus:ring-green outline-none" />
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+              <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green focus:ring-1 focus:ring-green outline-none" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email (optional)</label>
+              <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green focus:ring-1 focus:ring-green outline-none" />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Tell us about your stump</label>
+              <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green focus:ring-1 focus:ring-green outline-none" placeholder="How many stumps? Approximate size? Any access concerns?"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-forest text-white py-4 rounded-xl font-bold text-lg hover:bg-green transition-colors">
+              Send Message
+            </button>
+          </form>
+
+          <!-- Map -->
+          <div class="mt-8 rounded-2xl overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d-82.374!3d34.876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88583b0a1d0f0001%3A0x1!2s127+Richbourg+Rd%2C+Greenville%2C+SC+29615!5e0!3m2!1sen!2sus!4v1"
+              width="100%"
+              height="250"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mark's Stump Removal Location"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

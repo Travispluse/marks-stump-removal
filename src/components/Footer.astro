@@ -1,0 +1,51 @@
+---
+import { business, cities } from '../data/business';
+---
+<footer class="bg-forest text-white">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-bold mb-3 text-earth">Mark's Stump Removal</h3>
+        <p class="text-sm text-gray-300 mb-3">Professional stump grinding in Greenville, SC and surrounding Upstate communities.</p>
+        <div class="flex gap-3">
+          <a href={business.facebook} target="_blank" rel="noopener" class="text-gray-300 hover:text-earth transition-colors" aria-label="Facebook">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold mb-3 text-earth">Contact</h3>
+        <p class="text-sm text-gray-300 mb-1">📍 {business.address}</p>
+        <p class="text-sm text-gray-300 mb-1">📞 <a href={business.phoneTel} class="hover:text-earth">{business.phone}</a></p>
+        <p class="text-sm text-gray-300 mb-1">🕐 {business.hours}</p>
+        <p class="text-sm text-gray-300">{business.hoursClosed}</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold mb-3 text-earth">Services</h3>
+        <ul class="text-sm text-gray-300 space-y-1">
+          <li><a href="/services/#stump-grinding" class="hover:text-earth">Stump Grinding</a></li>
+          <li><a href="/services/#root-removal" class="hover:text-earth">Root Removal</a></li>
+          <li><a href="/services/#land-clearing" class="hover:text-earth">Land Clearing</a></li>
+          <li><a href="/services/#emergency" class="hover:text-earth">Emergency Service</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold mb-3 text-earth">Service Areas</h3>
+        <ul class="text-sm text-gray-300 space-y-1 columns-2">
+          {cities.slice(0, 10).map(city => (
+            <li><a href={`/${city.slug}-sc-stump-grinding/`} class="hover:text-earth">{city.name}</a></li>
+          ))}
+        </ul>
+        <a href="/service-areas/" class="text-earth text-sm mt-2 inline-block hover:underline">View all areas →</a>
+      </div>
+    </div>
+
+    <div class="border-t border-green mt-8 pt-6 text-center text-sm text-gray-400">
+      <p>© {new Date().getFullYear()} {business.name}. All rights reserved.</p>
+      <p class="mt-1">Professional Stump Grinding · Greenville, SC · <a href={business.phoneTel} class="hover:text-earth">{business.phone}</a></p>
+    </div>
+  </div>
+</footer>

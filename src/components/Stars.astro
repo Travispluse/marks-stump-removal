@@ -1,0 +1,10 @@
+---
+import { business } from '../data/business';
+---
+<div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
+  <div class="flex text-yellow-400 text-lg">
+    {'★★★★★'}
+  </div>
+  <span class="font-bold">{business.rating}</span>
+  <span class="text-sm opacity-80">({business.reviewCount} Google Reviews)</span>
+</div>
